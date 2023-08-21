@@ -46,6 +46,26 @@ public:
     }
   }
 
+  void turn_left()
+  {
+    if (direction == "N")
+    {
+      direction = "W";
+    }
+    else if (direction == "S")
+    {
+      direction = "E";
+    }
+    else if (direction == "E")
+    {
+      direction = "N";
+    }
+    else if (direction == "W")
+    {
+      direction = "S";
+    }
+  }
+
   void execute_commands(const std::vector<char> &commands)
   {
     for (char cmd : commands)
