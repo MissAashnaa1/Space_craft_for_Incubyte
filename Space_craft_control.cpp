@@ -18,6 +18,34 @@ public:
     this->angle = 0;
   }
 
+  void move(int distance)
+  {
+    if (direction == "N")
+    {
+      y += distance;
+    }
+    else if (direction == "S")
+    {
+      y -= distance;
+    }
+    else if (direction == "E")
+    {
+      x += distance;
+    }
+    else if (direction == "W")
+    {
+      x -= distance;
+    }
+    else if (direction == "Up")
+    {
+      z += distance;
+    }
+    else if (direction == "Down")
+    {
+      z -= distance;
+    }
+  }
+
   void execute_commands(const std::vector<char> &commands)
   {
     for (char cmd : commands)
