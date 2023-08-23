@@ -86,7 +86,7 @@ public:
     }
   }
 
-  void execute_commands(const std::vector<char> &commands)
+  void execute_commands(vector<char> &commands)
   {
     for (char cmd : commands)
     {
@@ -116,6 +116,23 @@ public:
       }
     }
   }
+  int getX()
+  {
+    return x;
+  }
+
+  int getY()
+  {
+    return y;
+  }
+  int getZ()
+  {
+    return z;
+  }
+  string getDirection()
+  {
+    return direction;
+  }
 };
 int main()
 {
@@ -137,7 +154,6 @@ int main()
 
   cout << "Final Position: (" << spacecraft.getX() << ", " << spacecraft.getY() << ", " << spacecraft.getZ() << ")\n";
   cout << "Final Direction: " << spacecraft.getDirection() << "\n";
-  cout << "Final Angle: " << spacecraft.getAngle() << " degrees\n";
 
   return 0;
 }
