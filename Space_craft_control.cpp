@@ -5,8 +5,8 @@ class Spacecraft
 {
 private:
   int x, y, z;
-  string direction;
-  int angle;
+  string faceDirection;
+  string moveDirection;
 
 public:
   Spacecraft(int x, int y, int z, string direction)
@@ -14,33 +14,33 @@ public:
     this->x = x;
     this->y = y;
     this->z = z;
-    this->direction = direction;
-    this->angle = 0;
+    this->faceDirection = direction;
+    this->moveDirection = direction;
   }
 
   void move(int distance)
   {
-    if (direction == "N")
+    if (moveDirection == "N")
     {
       y += distance;
     }
-    else if (direction == "S")
+    else if (moveDirection == "S")
     {
       y -= distance;
     }
-    else if (direction == "E")
+    else if (moveDirection == "E")
     {
       x += distance;
     }
-    else if (direction == "W")
+    else if (moveDirection == "W")
     {
       x -= distance;
     }
-    else if (direction == "Up")
+    else if (moveDirection == "Up")
     {
       z += distance;
     }
-    else if (direction == "Down")
+    else if (moveDirection == "Down")
     {
       z -= distance;
     }
@@ -48,42 +48,60 @@ public:
 
   void turn_left()
   {
-    if (direction == "N")
+    if (faceDirection == "N")
     {
-      direction = "W";
+      faceDirection = "W";
+      moveDirection = "W";
     }
-    else if (direction == "S")
+    else if (faceDirection == "S")
     {
-      direction = "E";
+      faceDirection = "E";
+      moveDirection = "E";
     }
-    else if (direction == "E")
+    else if (faceDirection == "E")
     {
-      direction = "N";
+      faceDirection = "N";
+      moveDirection = "N";
     }
-    else if (direction == "W")
+    else if (faceDirection == "W")
     {
-      direction = "S";
+      faceDirection = "S";
+      moveDirection = "S";
     }
   }
 
   void turn_right()
   {
-    if (direction == "N")
+    if (faceDirection == "N")
     {
-      direction = "E";
+      faceDirection = "E";
+      moveDirection = "E";
     }
-    else if (direction == "S")
+    else if (faceDirection == "S")
     {
-      direction = "W";
+      faceDirection = "W";
+      moveDirection = "W";
     }
-    else if (direction == "E")
+    else if (faceDirection == "E")
     {
-      direction = "S";
+      faceDirection = "S";
+      moveDirection = "S";
     }
-    else if (direction == "W")
+    else if (faceDirection == "W")
     {
-      direction = "N";
+      faceDirection = "N";
+      moveDirection = "N";
     }
+  }
+
+  void turn_up()
+  {
+    moveDirection = "Up";
+  }
+
+  void turn_down()
+  {
+    moveDirection = "Down";
   }
 
   void execute_commands(vector<char> &commands)
@@ -125,22 +143,31 @@ public:
   {
     return y;
   }
+
   int getZ()
   {
     return z;
   }
-  string getDirection()
-  {
-    return direction;
-  }
+
+  string getFaceDirection() { return faceDirection; }
 };
 int main()
 {
 
-  string initial_direction = "";
+  string initial_direction;
+  cout << "Enter Initial Direction\n N for North\n S for South \n E for East \n W for West" << endl;
+
   cin >> initial_direction;
-  Spacecraft spacecraft(0, 0, 0, initial_direction);
+  int x, y, z;
+  cout << "Enter x coordinate" << endl;
+  cin >> x;
+  cout << "Enter y coordinate" << endl;
+  cin >> y;
+  cout << "Enter z coordinate" << endl;
+  cin >> z;
+  Spacecraft spacecraft(x, y, z, initial_direction);
   vector<char> commands;
+  cout << "Enter commands and for ending press \"0\"" << endl;
   while (true)
   {
     char ch;
@@ -153,7 +180,7 @@ int main()
   spacecraft.execute_commands(commands);
 
   cout << "Final Position: (" << spacecraft.getX() << ", " << spacecraft.getY() << ", " << spacecraft.getZ() << ")\n";
-  cout << "Final Direction: " << spacecraft.getDirection() << "\n";
+  cout << "Final Direction: " << spacecraft.getFaceDirection() << "\n";
 
   return 0;
 }
