@@ -1,5 +1,5 @@
 #include <iostream>
-#include <bits/stdc++.h>
+#include <vector>
 using namespace std;
 class Spacecraft
 {
@@ -158,6 +158,11 @@ int main()
   cout << "Enter Initial Direction\n N for North\n S for South \n E for East \n W for West" << endl;
 
   cin >> initial_direction;
+  if (initial_direction != "N" && initial_direction != "S" && initial_direction != "W" && initial_direction != "E")
+  {
+    cout << "Enter valid direction!" << endl;
+    main();
+  }
   int x, y, z;
   cout << "Enter x coordinate" << endl;
   cin >> x;
@@ -174,6 +179,12 @@ int main()
     cin >> ch;
     if (ch == '0')
       break;
+    if (ch != 'f' && ch != 'b' && ch != 'l' && ch != 'r' && ch != 'u' && ch != 'd')
+    {
+      cout << "Enter Valid Command" << endl;
+      continue;
+    }
+
     commands.push_back(ch);
   }
 
